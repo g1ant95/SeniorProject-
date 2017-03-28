@@ -47,13 +47,12 @@ class RecipeList():
 		self.recipes.append(new)
 		
 	def sort(self): 
-		for i in xrange(0,len(self.recipes) - 1):
-			for j in xrange(0, len(self.recipes)):
-				if self.recipes[j].percent < self.recipes[j+1]: 
-					temp = self.recipes[j]
-					self.recipes[j] = self.recipes[j+1]
-					self.recipes[j+1] = temp
-		
+		print "SORTING"
+		for i in range(len(self.recipes)):
+			for j in range(len(self.recipes)-1-i):
+				if self.recipes[j].percent < self.recipes[j+1]:
+					self.recipes[j],self.recipes[j+1] = self.recipes[j+1],self.recipes[j]
+					
 	def displayall(self):
 		print "Recipe List"
 		print "Number of Recipes: " + str(len(self.recipes))
@@ -74,6 +73,7 @@ while(entered != 'done'):
 	list.newRecipe(entered)
 	entered = raw_input("Enter new recipe or 'done': ")
 
+list.sort()
 list.displayall()
 
 
