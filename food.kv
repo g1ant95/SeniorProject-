@@ -1,0 +1,143 @@
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+ScreenManagement:
+	transition: FadeTransition()
+	MainScreen:
+	InventoryScreen:
+	RecipeScreen:
+
+
+<MainScreen>:
+	do_default_tab: False
+    tab_width: self.size[0]/len(self.tab_list)
+    name: 'main'
+	
+	TabbedPanelItem:
+		text: 'EXIT tab'
+		color: 1,0,0,4
+		GridLayout:
+			rows: 1
+		
+			Button:
+				text: 'Click to EXIT App'
+				color: 1,0,0,4
+				font_size: 50
+				on_release: app.get_running_app().stop()
+				
+    TabbedPanelItem:	
+		text: 'My Recipes'
+		color: 0,1,0,3
+		GridLayout:
+			rows: 3
+				
+			MyAccordion:
+				orientation: 'vertical'
+				size_hint: 1, .1
+						
+				
+			Button: 
+				on_release: app.root.current = 'recp'
+				text: 'Add Recipe'
+				color: 0,1,0,2
+				size_hint: 1, .0125
+				
+			Button: 
+				text: 'Remove Recipe'
+				color: 1,0,0,2
+				size_hint: 1, .0125
+	
+				
+    TabbedPanelItem:
+        text: 'Suggested Recipes'
+		color: 0,1,0,3
+		GridLayout:
+			rows: 1
+			
+			Label: 
+				text: "No suggested recipes"
+
+    TabbedPanelItem:
+        text: 'Inventory'
+		color: 0,1,0,3
+		GridLayout:
+			rows: 3
+			
+			
+			#Label:
+				#text: "Inventory is empty"
+				
+			MyAccordion: 
+				orientation: 'vertical'
+				size_hint: 1, .1
+			
+			Button:
+				on_release: app.root.current = 'inv'
+				text: 'Add Item'
+				color: 0,1,0,2
+				size_hint: 1, .0125
+				
+			Button: 
+				text: 'Remove Item'
+				color: 1,0,0,2
+				size_hint: 1, .0125
+				
+<InventoryScreen>:
+    name: 'inv'
+	FloatLayout:
+		MyInputScreen:
+			orientation: 'vertical'
+			
+			TextInput:
+				id: my_user_input
+				text:'test'
+				size_hint: .5, .1
+				pos_hint: {"left":1, "bottom":1}
+		Button:
+			on_release: app.root.current = 'main'
+			#check for if text is saved
+			text: 'Go back to Inventory'
+			font_size: 20
+			size_hint: 0.3, 0.2
+			color: 1,0,0,1
+			pos_hint: {"right":1, "top":1}
+			
+		Button:	
+			on_press: 
+			text:  'Save'
+			font_size: 20
+			size_hint: 0.3, 0.2
+			color: 0,1,0,1
+			pos_hint: {"right":1, "bottom":1}
+	
+			
+<RecipeScreen>:
+    name: 'recp'
+	FloatLayout:
+		MyInputScreen:
+			orientation: 'vertical' 
+			TextInput:
+				id: my_user_input
+				text:""
+			Label: 
+				text: my_user_input.text
+		Button:
+			color: 1,0,0,1
+			font_size: 20
+			size_hint: 0.3, 0.2
+			on_release: app.root.current = 'main'
+			pos_hint: {"right":1, "top":1}
+			text: 'Go back to My Recipes'
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
